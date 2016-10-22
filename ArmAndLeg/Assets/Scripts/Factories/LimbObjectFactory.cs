@@ -18,8 +18,11 @@ public static class LimbObjectFactory
     {
         get
         {
-            if (!s_Settings)
-                s_Settings = Resources.FindObjectsOfTypeAll<LimbObjectFactorySettings>().First();
+            if (s_Settings)
+                return s_Settings;
+
+            Random.InitState(DateTime.Now.Millisecond);
+            s_Settings = Resources.LoadAll<LimbObjectFactorySettings>("Settings").First();
 
             return s_Settings;
         }
@@ -107,7 +110,7 @@ public static class LimbObjectFactory
     {
         var isNegative = (int)Mathf.Round(Random.value) == 1;
 
-        var negativeCoefficient = isNegative ? -1 : 1;
+        var negativeCoefficient = Random.Range(-1, 2);
 
         return
              Random.Range(settings.translationRandomMin, settings.translationRandomMax)
