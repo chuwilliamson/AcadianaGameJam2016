@@ -10,13 +10,13 @@ public class EnemyController : MonoBehaviour
     public GameObject armPrefab;
     public GameObject legPrefab;
 
-    
+
     // Use this for initialization
     void Awake()
     {
         //set components
         m_AudioSource = GetComponent<AudioSource>();
-        
+
     }
     void Start()
     {
@@ -29,28 +29,28 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator CheckDead()
     {
-        
-        while (m_Inventory.limbCount >0)        
+
+        while (m_Inventory.limbCount >0)
             yield return null;
         while (m_HitCounter > 0)
             yield return null;
         DoDead();
-        
+
     }
 
     void DoDead()
     {
         GetComponent<SpriteRenderer>().sprite = DeadSprite;
     }
-   
-    
+
+
     private GameObject BuildLimb(Object template, Limb limb, bool flipX = false, bool flipY = false)
     {
         var obj = Instantiate(template, transform) as GameObject;
         if (!obj)
             return null;
         //check to see if some rando added an EnemyLimbBehaviour to the prefab
-        //or if some 
+        //or if some
         var objComp = obj.GetComponent<EnemyLimbBehaviour>();
         if(!objComp)
             objComp = obj.AddComponent<EnemyLimbBehaviour>();
@@ -73,7 +73,7 @@ public class EnemyController : MonoBehaviour
         {
             m_AudioSource.clip = AudioClips[0];
             m_AudioSource.Play();
-            
+
         }
         else if (m_Inventory.PopLeg(transform.position))
         {
@@ -82,8 +82,8 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            m_AudioSource.clip = AudioClips[2];            
-            
+            m_AudioSource.clip = AudioClips[2];
+
             m_HitCounter -= 1;
 
             m_AudioSource.Play();
@@ -102,15 +102,4 @@ public class EnemyController : MonoBehaviour
     }
 
     public Sprite DeadSprite;
-
-    private void OnTriggerStay2D(Collider2D collider)
-    {
-        var limbBehaviour = collider.GetComponent<LimbBehaviour>();
-        if (limbBehaviour && limbBehaviour.canPickUp)
-        {
-            m_Inventory.AddLimb(limbBehaviour.limb);
-            Destroy(limbBehaviour.gameObject);
-        }
-    }
-
 }
