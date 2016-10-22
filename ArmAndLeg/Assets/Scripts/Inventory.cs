@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 [Serializable]
 public class MyIntEvent : UnityEvent<int> { }
-
+[Serializable]
 public class Inventory
 {
     /// <summary> The list of generic limbs that the inventory manages </summary>
