@@ -7,7 +7,7 @@ public class UIInventory : MonoBehaviour {
 	void Awake ()
     {
         ogString = GetComponent<Text>().text;
-        FindObjectOfType<PlayerController>().inventory.armCountEvent.AddListener(UpdateText);	
+        FindObjectOfType<ZombiePlayerController>().inventory.armCountEvent.AddListener(UpdateText);	
 	}
     string ogString;
     void UpdateText(int amount)

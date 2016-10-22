@@ -2,7 +2,7 @@
 using System.Collections;
 using Items;
 
-public class PlayerController : MonoBehaviour
+public class ZombiePlayerController : MonoBehaviour
 {
     public GameObject armPrefab;
     public GameObject legPrefab;

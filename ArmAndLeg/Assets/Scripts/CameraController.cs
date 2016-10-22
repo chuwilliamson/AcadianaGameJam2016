@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Vector3 pos = FindObjectOfType<PlayerController>().transform.localPosition;
+        Vector3 pos = FindObjectOfType<ZombiePlayerController>().transform.localPosition;
         transform.position = new Vector3(pos.x, pos.y, -10);
 	}
 
