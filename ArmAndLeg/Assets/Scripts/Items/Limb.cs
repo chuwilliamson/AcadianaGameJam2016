@@ -16,9 +16,6 @@ namespace Items
         [SerializeField]
         private float m_MeleeDamage = 1f;
 
-        [SerializeField]
-        private float m_AliveTime = 3f;
-
         public MyBoolEvent inInventoryEvent = new MyBoolEvent();
 
         public bool inInventory
@@ -30,11 +27,6 @@ namespace Items
 
                 inInventoryEvent.Invoke(value);
             }
-        }
-
-        public float aliveTime
-        {
-            get { return m_AliveTime; }
         }
 
         public abstract bool Swing();

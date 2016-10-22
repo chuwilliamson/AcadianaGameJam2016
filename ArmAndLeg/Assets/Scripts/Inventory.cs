@@ -91,43 +91,43 @@ public class Inventory
         return true;
     }
 
-    public bool PopLimb(Transform parentTransform, int popNumber = 1)
+    public bool PopLimb(Vector3 position, int popNumber = 1)
     {
         if (popNumber > m_Limbs.Count)
             return false;
 
         for (var i = 0; i < popNumber; ++i)
-            if (!RemoveLimb(m_Limbs.Last(), parentTransform))
+            if (!RemoveLimb(m_Limbs.Last(), position))
                 return false;
 
         return true;
     }
 
-    public bool PopArm(Transform parentTransform, int popNumber = 1)
+    public bool PopArm(Vector3 position, int popNumber = 1)
     {
         if (popNumber > armCount)
             return false;
 
         for (var i = 0; i < popNumber; ++i)
-            if (!RemoveLimb(arms.Last(), parentTransform))
+            if (!RemoveLimb(arms.Last(), position))
                 return false;
 
         return true;
     }
 
-    public bool PopLeg(Transform parentTransform, int popNumber = 1)
+    public bool PopLeg(Vector3 position, int popNumber = 1)
     {
         if (popNumber > legCount)
             return false;
 
         for (var i = 0; i < popNumber; ++i)
-            if (!RemoveLimb(legs.Last(), parentTransform))
+            if (!RemoveLimb(legs.Last(), position))
                 return false;
 
         return true;
     }
 
-    public bool RemoveLimb(Limb limb, Transform parentTransform)
+    public bool RemoveLimb(Limb limb, Vector3 position)
     {
         if (m_Limbs.Count == 0)
             return false;
@@ -139,28 +139,10 @@ public class Inventory
         else if (limb is Leg)
             legCount--;
 
-        if (!CreateLimbObject(limb, parentTransform))
+        if (!LimbObjectFactory.Create(limb, position, LimbObjectFactory.PhysicsType.None))
             return false;
 
         limb.inInventory = false;
-
-        return true;
-    }
-
-    private static bool CreateLimbObject(Limb limb, Transform parentTransform)
-    {
-        var newLimbObject =
-                Object.Instantiate(
-                    new GameObject(),
-                    parentTransform.position,
-                    Quaternion.identity) as GameObject;
-
-        if (newLimbObject == null)
-            return false;
-
-        var newLimbBehaviour = newLimbObject.AddComponent<LimbBehaviour>();
-
-        newLimbBehaviour.Init(limb);
 
         return true;
     }
