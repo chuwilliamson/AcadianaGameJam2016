@@ -12,10 +12,8 @@ public class ZombiePlayerController : MonoBehaviour
     }
     void Start()
     {
-
-
         Arm LeftArm = new Arm();
-        Arm RightArm = new Arm(); 
+        Arm RightArm = new Arm();
 
         m_Inventory.AddLimb(LeftArm);
         m_Inventory.AddLimb(RightArm);
@@ -27,21 +25,20 @@ public class ZombiePlayerController : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         Vector2 dir = new Vector3(h, v).normalized;
-        Vector2 pos = transform.position; 
+        Vector2 pos = transform.position;
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            m_Inventory = new Inventory();
+            m_Inventory.AddLimb(new Arm());
         }
 
         transform.position = pos + dir * m_Speed * Time.deltaTime;
         float vel = (pos - (Vector2)transform.position).magnitude;
 
-        
         m_anim.SetFloat("Speed", vel);
     }
 
-    
+
     public float m_Speed;
 
     [SerializeField]
@@ -50,5 +47,15 @@ public class ZombiePlayerController : MonoBehaviour
     public Inventory inventory
     {
         get { return m_Inventory; }
+    }
+
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        var limbBehaviour = collider.GetComponent<LimbBehaviour>();
+        if (limbBehaviour && limbBehaviour.canPickUp)
+        {
+            m_Inventory.AddLimb(limbBehaviour.limb);
+            Destroy(limbBehaviour.gameObject);
+        }
     }
 }

@@ -7,8 +7,6 @@ using Items;
 using UnityEngine;
 using UnityEngine.Events;
 
-using Object = UnityEngine.Object;
-
 [Serializable]
 public class MyIntEvent : UnityEvent<int> { }
 
@@ -139,7 +137,7 @@ public class Inventory
         else if (limb is Leg)
             legCount--;
 
-        if (!LimbObjectFactory.Create(limb, position, LimbObjectFactory.PhysicsType.None))
+        if (!LimbObjectFactory.Create(limb, position))
             return false;
 
         limb.inInventory = false;

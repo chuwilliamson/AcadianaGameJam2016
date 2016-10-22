@@ -12,10 +12,22 @@ namespace Items
         [SerializeField]
         private float m_AliveTime;
 
+        private bool m_CanPickUp;
+
+        public Limb limb
+        {
+            get { return m_Limb; }
+        }
+
         public float aliveTime
         {
             get { return m_AliveTime; }
             set { m_AliveTime = value; }
+        }
+
+        public bool canPickUp
+        {
+            get { return m_CanPickUp; }
         }
 
         public bool Init(Limb newLimb, float newAliveTime)
@@ -28,8 +40,8 @@ namespace Items
                 inInventory =>
                 {
                     // If no longer in inventory then start to disappear
-                    //if (!inInventory)
-                    //    StartCoroutine(Disappear());
+                    if (!inInventory)
+                        StartCoroutine(Disappear());
                 });
 
             return true;
@@ -37,10 +49,20 @@ namespace Items
 
         private IEnumerator Disappear()
         {
+            var rigidbody = GetComponent<Rigidbody2D>();
+
             var time = 0f;
 
             while (time < m_AliveTime)
             {
+                while (
+                    rigidbody &&
+                    (Mathf.Abs(rigidbody.velocity.x) > 0.1f || Mathf.Abs(rigidbody.velocity.y) > 0.1f))
+                {
+                    m_CanPickUp = false;
+                    yield return false;
+                }
+
                 time += Time.deltaTime;
 
                 var spriteRenderer = GetComponent<SpriteRenderer>();
@@ -54,6 +76,7 @@ namespace Items
                             spriteRenderer.color.a - 1f / m_AliveTime * Time.deltaTime);
                 }
 
+                m_CanPickUp = true;
                 yield return false;
             }
 

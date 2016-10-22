@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 
+using Factories;
+
 using Items;
 
 using UnityEngine;
@@ -32,7 +34,10 @@ public static class LimbObjectFactory
         Rotate = 1 << 1,
     }
 
-    public static bool Create<T>(T limb, Vector3 position, PhysicsType physicsType) where T : Limb
+    public static bool Create<T>(
+        T limb,
+        Vector3 position,
+        PhysicsType physicsType = PhysicsType.Translate | PhysicsType.Rotate) where T : Limb
     {
         var newLimbObject =
             Object.Instantiate(settings.limbPrefab, position, Quaternion.identity) as GameObject;
@@ -55,13 +60,15 @@ public static class LimbObjectFactory
         var rigidbody = newLimbObject.GetComponent<Rigidbody2D>();
         if (rigidbody)
         {
-            rigidbody.AddForce(
-                new Vector3(
-                    GetTranslationValue(),
-                    GetTranslationValue(),
-                    0f));
+            if ((physicsType & PhysicsType.Translate) != 0)
+                rigidbody.AddForce(
+                    new Vector3(
+                        GetTranslationValue(),
+                        GetTranslationValue(),
+                        0f));
 
-            rigidbody.AddTorque(GetRotationValue());
+            if ((physicsType & PhysicsType.Rotate) != 0)
+                rigidbody.AddTorque(GetRotationValue());
         }
 
         var spriteRenderer = newLimbObject.GetComponent<SpriteRenderer>();
@@ -87,8 +94,11 @@ public static class LimbObjectFactory
             }
         }
 
+        var collider2D = newLimbObject.AddComponent<BoxCollider2D>();
+        collider2D.isTrigger = true;
+
         var newLimbBehaviour = newLimbObject.AddComponent<LimbBehaviour>();
-        newLimbBehaviour.Init(limb, 3f);
+        newLimbBehaviour.Init(limb, settings.aliveTime);
 
         return true;
     }
@@ -114,25 +124,4 @@ public static class LimbObjectFactory
             Random.Range(settings.rotationRandomMin, settings.rotationRandomMax)
             * negativeCoefficient;
     }
-}
-
-[CreateAssetMenu(fileName = "NewLimbFactorySettings", menuName = "Settings/Limb Factory Settings")]
-public class LimbObjectFactorySettings : ScriptableObject
-{
-    public GameObject limbPrefab;
-
-    [Space]
-    public Sprite defaultArmSprite;
-    public Sprite defaultLegSprite;
-
-    [Space]
-    public float aliveTime;
-
-    [Space]
-    public float translationRandomMin;
-    public float translationRandomMax;
-
-    [Space]
-    public float rotationRandomMin;
-    public float rotationRandomMax;
 }
