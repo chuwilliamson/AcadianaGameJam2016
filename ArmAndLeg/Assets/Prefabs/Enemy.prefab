@@ -24,6 +24,7 @@ GameObject:
   - 61: {fileID: 61000013131479094}
   - 50: {fileID: 50000011826077854}
   - 82: {fileID: 82000010143296610}
+  - 82: {fileID: 82000010841501920}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -76,6 +77,80 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2182674, y: 3.0031657}
 --- !u!82 &82000010143296610
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013928645508}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e3bc622d026298240aacefd73997299d, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!82 &82000010841501920
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -175,6 +250,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8a3a3b50b7c0b1e419f7f39c9e393282, type: 3}
   - {fileID: 8300000, guid: e3bc622d026298240aacefd73997299d, type: 3}
   - {fileID: 8300000, guid: 3d7b59f47ef8208499ef3a9910c24179, type: 3}
+  m_HitCounter: 2
+  DeadSprite: {fileID: 21300000, guid: 9a9871d79d525ab499dd167fd35c46ad, type: 3}
 --- !u!212 &212000010683890364
 SpriteRenderer:
   m_ObjectHideFlags: 1
