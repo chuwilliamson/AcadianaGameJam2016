@@ -6,6 +6,7 @@ namespace Items
 {
     public class LimbBehaviour : MonoBehaviour
     {
+        [SerializeField]
         private Limb m_Limb;
 
         public bool Init(Limb newLimb)
@@ -18,13 +19,13 @@ namespace Items
                 {
                     // If no longer in inventory then start to disappear
                     if (!inInventory)
-                        StartCoroutine(Disapear());
+                        StartCoroutine(Disappear());
                 });
 
             return true;
         }
 
-        private IEnumerator Disapear()
+        private IEnumerator Disappear()
         {
             yield return new WaitForSeconds(m_Limb.aliveTime);
 
