@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
         GameObject armRightobj = BuildLimb(armPrefab, new Arm());
         GameObject legRightobj = BuildLimb(legPrefab, new Leg(), true);
         GameObject legLeftobj = BuildLimb(legPrefab, new Leg());
+        
     }
 
     GameObject BuildLimb(GameObject template, Limb limb, bool flipX = false, bool flipY = false)
@@ -29,6 +30,7 @@ public class EnemyController : MonoBehaviour
     public Inventory m_Inventory;
     public GameObject armPrefab;
     public GameObject legPrefab;
+    public GameObject torsoPrefab;
 
     public void OnCollisionEnter2D(Collision2D collision)
     {        

@@ -36,7 +36,7 @@ public class ZombiePlayerController : MonoBehaviour
 
         transform.position = pos + dir * m_Speed * Time.deltaTime;
         float vel = (pos - (Vector2)transform.position).magnitude;
-
+        GetComponent<SpriteRenderer>().flipY = (v > 0) ? true : false;
         
         m_anim.SetFloat("Speed", vel);
     }
