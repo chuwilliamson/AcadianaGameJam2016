@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Items
 {
-    public abstract class Limb : MonoBehaviour
+    public class MyBoolEvent : UnityEvent<bool> { }
+
+    public abstract class Limb
     {
         private bool m_InInventory;
 
@@ -16,25 +19,25 @@ namespace Items
         [SerializeField]
         private float m_AliveTime = 3f;
 
+        public MyBoolEvent inInventoryEvent = new MyBoolEvent();
+
         public bool inInventory
         {
             get { return m_InInventory; }
             set
             {
                 m_InInventory = value;
-                if (!value)
-                    StartCoroutine(Update());
+
+                inInventoryEvent.Invoke(value);
             }
+        }
+
+        public float aliveTime
+        {
+            get { return m_AliveTime; }
         }
 
         public abstract bool Swing();
         public abstract bool Throw();
-
-        private IEnumerator Update()
-        {
-            yield return new WaitForSeconds(m_AliveTime);
-
-            Destroy(gameObject);
-        }
     }
 }
