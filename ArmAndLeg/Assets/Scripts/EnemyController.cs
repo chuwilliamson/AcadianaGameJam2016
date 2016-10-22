@@ -1,39 +1,43 @@
-﻿using UnityEngine;
-using System.Collections;
-using Items;
+﻿using Items;
+
+using UnityEngine;
+
 public class EnemyController : MonoBehaviour
 {
+    public Inventory m_Inventory;
+
+    public GameObject armPrefab;
+    public GameObject legPrefab;
 
     // Use this for initialization
     void Start()
     {
-        GameObject armLeftobj = BuildLimb(armPrefab, new Arm(), true);
-        GameObject armRightobj = BuildLimb(armPrefab, new Arm());
-        GameObject legRightobj = BuildLimb(legPrefab, new Leg(), true);
-        GameObject legLeftobj = BuildLimb(legPrefab, new Leg());
-        
+        var armLeftobj = BuildLimb(armPrefab, new Arm(), true);
+        var armRightobj = BuildLimb(armPrefab, new Arm());
+        var legRightobj = BuildLimb(legPrefab, new Leg(), true);
+        var legLeftobj = BuildLimb(legPrefab, new Leg());
     }
 
-    GameObject BuildLimb(GameObject template, Limb limb, bool flipX = false, bool flipY = false)
+    private GameObject BuildLimb(Object template, Limb limb, bool flipX = false, bool flipY = false)
     {
-        GameObject obj = Instantiate(template, transform) as GameObject;
-        LimbBehaviour objComp = obj.AddComponent<LimbBehaviour>();
+        var obj = Instantiate(template, transform) as GameObject;
+        if (!obj)
+            return null;
+
+        var objComp = obj.AddComponent<EnemyLimbBehaviour>();
+
         objComp.Init(limb);
+
         obj.GetComponent<SpriteRenderer>().flipX = flipX;
         obj.GetComponent<SpriteRenderer>().flipY = flipY;
+
         m_Inventory.AddLimb(limb);
 
         return obj;
     }
 
-    // Update is called once per frame
-    public Inventory m_Inventory;
-    public GameObject armPrefab;
-    public GameObject legPrefab;
-    public GameObject torsoPrefab;
-
     public void OnCollisionEnter2D(Collision2D collision)
-    {        
-        m_Inventory.PopArm(transform);
+    {
+        m_Inventory.PopArm(transform.position);
     }
 }
