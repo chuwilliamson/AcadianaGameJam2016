@@ -102,5 +102,15 @@ public class EnemyController : MonoBehaviour
     }
 
     public Sprite DeadSprite;
-    
+
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        var limbBehaviour = collider.GetComponent<LimbBehaviour>();
+        if (limbBehaviour && limbBehaviour.canPickUp)
+        {
+            m_Inventory.AddLimb(limbBehaviour.limb);
+            Destroy(limbBehaviour.gameObject);
+        }
+    }
+
 }
