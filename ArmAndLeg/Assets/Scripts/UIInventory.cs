@@ -1,25 +1,42 @@
 ﻿using UnityEngine;
-using System.Linq;
 using UnityEngine.UI;
-public class UIInventory : MonoBehaviour {
 
-	// Use this for initialization
-	void Awake ()
+public class UIInventory : MonoBehaviour
+{
+    private enum Type
+    {
+        Arm,
+        Leg,
+    }
+
+    [SerializeField]
+    private Type m_Type;
+
+    private string ogString;
+
+    // Use this for initialization
+    private void Awake()
     {
         ogString = GetComponent<Text>().text;
-        if(ogString.Contains("ARMS"))
-        FindObjectOfType<EnemyController>().inventory.armCountEvent.AddListener(UpdateText);
-        else
+
+        var inventory = FindObjectOfType<ZombiePlayerController>().inventory;
+
+        switch (m_Type)
         {
-            FindObjectOfType<EnemyController>().inventory.legCountEvent.AddListener(UpdateText);
+        case Type.Arm:
+            inventory.armCountEvent.AddListener(UpdateText);
+            break;
+        case Type.Leg:
+            inventory.legCountEvent.AddListener(UpdateText);
+            break;
+
+        default:
+            break;
         }
-	}
-    string ogString;
-    void UpdateText(int amount)
-    {        
-        GetComponent<Text>().text = ogString + " "+ amount.ToString();
-        
     }
-	// Update is called once per frame
-	
+
+    private void UpdateText(int amount)
+    {
+        GetComponent<Text>().text = ogString + " " + amount;
+    }
 }
