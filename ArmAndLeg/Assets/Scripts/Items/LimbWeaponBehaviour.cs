@@ -71,7 +71,10 @@ namespace Items
 
                 var newLimbObjectRigidbody = newLimbObject.GetComponent<Rigidbody2D>();
                 if (newLimbObjectRigidbody)
+                {
                     newLimbObjectRigidbody.velocity = m_Rigidbody2D.velocity;
+                    newLimbObjectRigidbody.angularVelocity = m_Rigidbody2D.angularVelocity;
+                }
 
                 Destroy(gameObject);
             }
