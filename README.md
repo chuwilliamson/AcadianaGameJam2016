@@ -1,8 +1,8 @@
-===Acadiana Game Jam 2016 submission===
+#Acadiana Game Jam 2016 submission
 
-==Team Name==
+#Team Name
 Null Reference
-==Team Members==
+#Team Members
 =Art=
 Donald Gremillion
 =Programming=
@@ -19,7 +19,7 @@ Movement: Left click to shoot
 GameState: F1 to restart
 GameState: Q to quit
 
-==Overview==
+#Overview
 Title: Project Spark
 Summary: Top down Wave based Survival game.
 In a world where limbs are limbs. You must use limbs to get more limbs. as a samurai
