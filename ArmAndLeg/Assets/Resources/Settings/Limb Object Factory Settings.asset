@@ -19,3 +19,9 @@ MonoBehaviour:
   translationRandomMax: 800
   rotationRandomMin: 250
   rotationRandomMax: 400
+  limbWeaponPrefab: {fileID: 1000012515197304, guid: 4f5a94d09fcca3347ae242074b25e7cc,
+    type: 2}
+  deafultArmWeaponSprite: {fileID: 21300000, guid: 6d70d929ccfea9746909c9867092cbd4,
+    type: 3}
+  deafultLegWeaponSprite: {fileID: 21300000, guid: dc455fe91beea7b49aa73a54f0a9b4b9,
+    type: 3}
