@@ -30,9 +30,9 @@ public class EnemyController : MonoBehaviour
 
         var armLeftobj = BuildLimb(armPrefab, new Arm(), true);
 
-        armLeftobj.GetComponent<SpriteRenderer>().sprite = m_armPool[Random.Range(0, m_armPool.Count - 1)];
+        armLeftobj.GetComponent<SpriteRenderer>().sprite = m_armPool[Random.Range(0, m_armPool.Count)];
         var armRightobj = BuildLimb(armPrefab, new Arm());
-        armRightobj.GetComponent<SpriteRenderer>().sprite = m_armPool[Random.Range(0, m_armPool.Count - 1)];
+        armRightobj.GetComponent<SpriteRenderer>().sprite = m_armPool[Random.Range(0, m_armPool.Count)];
         var legRightobj = BuildLimb(legPrefab, new Leg(), true);
 
         var legLeftobj = BuildLimb(legPrefab, new Leg());
@@ -60,7 +60,9 @@ public class EnemyController : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity.Set(0, 0);
         GetComponent<BoxCollider2D>().enabled = false;
         onEnemyDead.Invoke();
-        
+        m_AudioSource.clip = AudioClips[3];
+        m_AudioSource.Play();
+
     }
 
     private GameObject BuildLimb(Object template, Limb limb, bool flipX = false, bool flipY = false)

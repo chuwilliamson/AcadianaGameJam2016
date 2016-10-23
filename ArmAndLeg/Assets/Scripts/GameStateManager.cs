@@ -9,7 +9,8 @@ public enum GameState
     Credits,
 }
 
-public class GameStateManager : MonoBehaviour {
+public class GameStateManager : MonoBehaviour
+{
     public void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -19,19 +20,27 @@ public class GameStateManager : MonoBehaviour {
         m_currentState = GameState.Start;
         SceneManager.LoadScene(0);
     }
-  
+
     public void ToCombat()
     {
         if (combatRound == null)
         {
+
             combatRound = new CombatRound(2);
         }
         else
-        { 
-            int roundNumber = combatRound.roundNumber; 
+        {
+            int roundNumber = combatRound.roundNumber;
             combatRound = new CombatRound(roundNumber + 1);
+            if (roundNumber > 5)
+            {
+                ToCredits();
+                return;
+            }
         }
+
         m_currentState = GameState.Combat;
+
         SceneManager.LoadScene(1);
     }
 
@@ -41,7 +50,7 @@ public class GameStateManager : MonoBehaviour {
         SceneManager.LoadScene(2);
     }
 
-    
+
     private GameState m_currentState;
     public GameState Current
     {
@@ -62,7 +71,9 @@ public class GameStateManager : MonoBehaviour {
     }
 
     public CombatRound combatRound;
-     
+
+    
+
 
 }
 

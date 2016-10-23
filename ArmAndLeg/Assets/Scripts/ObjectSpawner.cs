@@ -12,9 +12,7 @@ public class ObjectSpawner : MonoBehaviour
         gm = FindObjectOfType<GameStateManager>();
         if (!gm)
         {
-            Debug.LogWarning("no gm found making default 25 enemies");
-            numEnemies = 25;
-            
+            Debug.LogWarning("no gm found making default 1 enemies");
         }
         else
         {
