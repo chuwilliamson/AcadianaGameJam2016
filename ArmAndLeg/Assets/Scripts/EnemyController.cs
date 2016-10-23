@@ -1,7 +1,7 @@
 ﻿using Items;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using UnityEngine.Events;
 
 using UnityEngine;
 
@@ -12,12 +12,14 @@ public class EnemyController : MonoBehaviour
     public GameObject armPrefab;
     public GameObject legPrefab;
 
-
+    public static UnityEvent onEnemyDead;
     // Use this for initialization
     void Awake()
     {
         //set components
         m_AudioSource = GetComponent<AudioSource>();
+        if (onEnemyDead == null)
+            onEnemyDead = new UnityEvent();
 
     }
     public List<Sprite> m_armPool;
@@ -44,14 +46,21 @@ public class EnemyController : MonoBehaviour
         while (m_HitCounter > 0)
             yield return null;
         DoDead();
+        yield return (new WaitForSeconds(3));
+        Destroy(gameObject);
 
     }
-
+    bool dead = false;
 
     void DoDead()
     {
+        dead = true;
         GetComponent<SpriteRenderer>().sprite = DeadSprite;
         GetComponent<ZambieBoid>().enabled = false;
+        GetComponent<Rigidbody2D>().velocity.Set(0, 0);
+        GetComponent<BoxCollider2D>().enabled = false;
+        onEnemyDead.Invoke();
+        
     }
 
     private GameObject BuildLimb(Object template, Limb limb, bool flipX = false, bool flipY = false)
