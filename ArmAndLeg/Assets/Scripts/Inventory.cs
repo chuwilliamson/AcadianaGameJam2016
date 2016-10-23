@@ -94,43 +94,70 @@ public class Inventory
         return true;
     }
 
-    public bool PopLimb(Vector3 position, int popNumber = 1)
+    public Limb PopLimb()
+    {
+        if (m_Limbs.Count == 0)
+            return null;
+
+        var lastLimb = m_Limbs.Last();
+        return RemoveLimb(lastLimb) ? lastLimb : null;
+    }
+    public IEnumerable<Limb> PopLimbs(int popNumber)
     {
         if (popNumber > m_Limbs.Count)
-            return false;
+            yield break;
 
         for (var i = 0; i < popNumber; ++i)
-            if (!RemoveLimb(m_Limbs.Last(), position))
-                return false;
-
-        return true;
+        {
+            var poppedLimb = PopLimb();
+            if (poppedLimb != null)
+                yield return poppedLimb;
+        }
     }
 
-    public bool PopArm(Vector3 position, int popNumber = 1)
+    public Limb PopArm()
+    {
+        if (!arms.Any())
+            return null;
+
+        var lastArm = arms.Last();
+        return RemoveLimb(lastArm) ? lastArm : null;
+    }
+    public IEnumerable<Limb> PopArms(int popNumber)
     {
         if (popNumber > armCount)
-            return false;
+            yield break;
 
         for (var i = 0; i < popNumber; ++i)
-            if (!RemoveLimb(arms.Last(), position))
-                return false;
-
-        return true;
+        {
+            var poppedArm = PopArm();
+            if (poppedArm != null)
+                yield return poppedArm;
+        }
     }
 
-    public bool PopLeg(Vector3 position, int popNumber = 1)
+    public Limb PopLeg()
+    {
+        if (!legs.Any())
+            return null;
+
+        var lastLeg = legs.Last();
+        return RemoveLimb(lastLeg) ? lastLeg : null;
+    }
+    public IEnumerable<Limb> PopLegs(int popNumber)
     {
         if (popNumber > legCount)
-            return false;
+            yield break;
 
         for (var i = 0; i < popNumber; ++i)
-            if (!RemoveLimb(legs.Last(), position))
-                return false;
-
-        return true;
+        {
+            var poppedLeg = PopLeg();
+            if (poppedLeg != null)
+                yield return poppedLeg;
+        }
     }
 
-    public bool RemoveLimb(Limb limb, Vector3 position)
+    public bool RemoveLimb(Limb limb)
     {
         if (m_Limbs.Count == 0)
             return false;
@@ -141,9 +168,6 @@ public class Inventory
             armCount--;
         else if (limb is Leg)
             legCount--;
-
-        if (!LimbObjectFactory.Create(limb, position))
-            return false;
 
         limb.inInventory = false;
 
