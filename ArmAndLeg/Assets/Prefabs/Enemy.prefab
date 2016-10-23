@@ -26,7 +26,6 @@ GameObject:
   - 82: {fileID: 82000010143296610}
   - 95: {fileID: 95000012556852112}
   - 114: {fileID: 114000010978309728}
-  - 114: {fileID: 114000013835285548}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -180,8 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e396a9da0d365fa40b6dfafa9a87b8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  mass: 5
+  target: {fileID: 1000013576581708, guid: 9ddd073625275ba48b67e368249e1e58, type: 2}
 --- !u!114 &114000012820910684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,19 +208,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3d7b59f47ef8208499ef3a9910c24179, type: 3}
   m_HitCounter: 1
   DeadSprite: {fileID: 21300000, guid: 9a9871d79d525ab499dd167fd35c46ad, type: 3}
---- !u!114 &114000013835285548
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013928645508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e396a9da0d365fa40b6dfafa9a87b8c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  mass: 5
 --- !u!212 &212000010683890364
 SpriteRenderer:
   m_ObjectHideFlags: 1
