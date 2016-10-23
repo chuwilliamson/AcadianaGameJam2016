@@ -9,6 +9,8 @@ namespace Items
 
     public abstract class Limb
     {
+        private GameObject m_Parent;
+
         private bool m_InInventory;
 
         [SerializeField]
@@ -17,6 +19,12 @@ namespace Items
         private float m_MeleeDamage = 1f;
 
         public MyBoolEvent inInventoryEvent = new MyBoolEvent();
+
+        public GameObject parent
+        {
+            get { return m_Parent; }
+            set { m_Parent = value; }
+        }
 
         public bool inInventory
         {

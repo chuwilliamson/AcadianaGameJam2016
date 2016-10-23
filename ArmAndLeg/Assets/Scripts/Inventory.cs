@@ -66,6 +66,11 @@ public class Inventory
         }
     }
 
+    public IEnumerable<Limb> limbs
+    {
+        get { return m_Limbs; }
+    }
+
     public IEnumerable<Arm> arms
     {
         get { return m_Limbs.OfType<Arm>(); }
