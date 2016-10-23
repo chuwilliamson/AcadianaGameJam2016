@@ -73,9 +73,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.032134116, y: 0.19585204}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1.31135, y: 1.7224555}
+  m_Size: {x: 1, y: 1}
 --- !u!82 &82000010143296610
 AudioSource:
   m_ObjectHideFlags: 1
@@ -185,9 +185,9 @@ MonoBehaviour:
   armPrefab: {fileID: 1000012771716612, guid: 241d3c467d1a1cb4f83e9f2b8546aa68, type: 2}
   legPrefab: {fileID: 1000011804989988, guid: bc8a4fb61adcbb64cb1bbde164e0c21a, type: 2}
   m_armPool:
-  - {fileID: 21300000, guid: 357fb641f87356b48b572d8fd95c6725, type: 3}
-  - {fileID: 21300000, guid: 7e0db1665cee1d244a5e36f1ac3c97bd, type: 3}
-  - {fileID: 21300000, guid: 143c756d781e16046af285e9d3cad469, type: 3}
+  - {fileID: 21300000, guid: d95449735599a1a498c6d2593b6db709, type: 3}
+  - {fileID: 21300000, guid: a220796474c34864eaccc704da6e1273, type: 3}
+  - {fileID: 21300000, guid: f1f67eda6e82a9b4e8ffd23436104b9a, type: 3}
   m_legPool:
   - {fileID: 21300000, guid: da48aafb6623201409d3800052ef1854, type: 3}
   m_torsoPool:

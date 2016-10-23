@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Runtime.Remoting.Messaging;
 
 using UnityEngine;
 
@@ -33,36 +34,30 @@ namespace Items
         public bool Init(Limb newLimb, float newAliveTime)
         {
             m_Limb = newLimb;
+            m_Limb.parent = gameObject;
+
             m_AliveTime = newAliveTime;
 
-            // Attach to the event
-            m_Limb.inInventoryEvent.AddListener(
-                inInventory =>
-                {
-                    // If no longer in inventory then start to disappear
-                    if (!inInventory)
-                        StartCoroutine(Disappear());
-                });
+            StartCoroutine(Disappear());
 
             return true;
         }
 
         private IEnumerator Disappear()
         {
+            m_CanPickUp = false;
+
+            yield return new WaitForSeconds(0.5f);
+
             var rigidbody = GetComponent<Rigidbody2D>();
+            yield return new WaitUntil(
+                () => Mathf.Abs(rigidbody.velocity.x) < 0.1f || Mathf.Abs(rigidbody.velocity.y) < 0.1f);
+
+            m_CanPickUp = true;
 
             var time = 0f;
-
             while (time < m_AliveTime)
             {
-                while (
-                    rigidbody &&
-                    (Mathf.Abs(rigidbody.velocity.x) > 0.1f || Mathf.Abs(rigidbody.velocity.y) > 0.1f))
-                {
-                    m_CanPickUp = false;
-                    yield return false;
-                }
-
                 time += Time.deltaTime;
 
                 var spriteRenderer = GetComponent<SpriteRenderer>();
@@ -75,8 +70,6 @@ namespace Items
                             spriteRenderer.color.b,
                             spriteRenderer.color.a - 1f / m_AliveTime * Time.deltaTime);
                 }
-
-                m_CanPickUp = true;
                 yield return false;
             }
 

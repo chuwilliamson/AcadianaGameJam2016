@@ -1,6 +1,8 @@
 ﻿using Items;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -23,9 +25,9 @@ public class EnemyController : MonoBehaviour
     public List<Sprite> m_torsoPool;
     void Start()
     {
-        
+
         var armLeftobj = BuildLimb(armPrefab, new Arm(), true);
-        
+
         armLeftobj.GetComponent<SpriteRenderer>().sprite = m_armPool[Random.Range(0, m_armPool.Count - 1)];
         var armRightobj = BuildLimb(armPrefab, new Arm());
         armRightobj.GetComponent<SpriteRenderer>().sprite = m_armPool[Random.Range(0, m_armPool.Count - 1)];
@@ -45,13 +47,13 @@ public class EnemyController : MonoBehaviour
 
     }
 
- 
+
     void DoDead()
     {
         GetComponent<SpriteRenderer>().sprite = DeadSprite;
         GetComponent<ZambieBoid>().enabled = false;
     }
-        
+
     private GameObject BuildLimb(Object template, Limb limb, bool flipX = false, bool flipY = false)
     {
         var obj = Instantiate(template, transform) as GameObject;
@@ -82,25 +84,35 @@ public class EnemyController : MonoBehaviour
         if (collision.collider.gameObject.GetComponent<ZombiePlayerController>())
         {
             //to test hitting different body parts
-            if (m_Inventory.PopArm(transform.position))
+            var poppedArm = m_Inventory.PopArm();
+            if (poppedArm != null)
             {
+                if (!LimbObjectFactory.Create(poppedArm, transform.position))
+                    return;
+
                 m_AudioSource.clip = AudioClips[0];
                 m_AudioSource.Play();
 
+                return;
             }
-            else if (m_Inventory.PopLeg(transform.position))
+
+            var poppedLeg = m_Inventory.PopLeg();
+            if (poppedLeg != null)
             {
+                if (!LimbObjectFactory.Create(poppedLeg, transform.position))
+                    return;
+
                 m_AudioSource.clip = AudioClips[1];
                 m_AudioSource.Play();
-            }
-            else
-            {
-                m_AudioSource.clip = AudioClips[2];
 
-                m_HitCounter -= 1;
-
-                m_AudioSource.Play();
+                return;
             }
+
+            m_AudioSource.clip = AudioClips[2];
+
+            m_HitCounter -= 1;
+
+            m_AudioSource.Play();
         }
     }
     private AudioSource m_AudioSource;

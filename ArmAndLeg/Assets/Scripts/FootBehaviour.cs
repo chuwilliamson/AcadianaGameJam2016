@@ -7,7 +7,6 @@ public class FootBehaviour : MonoBehaviour
     [SerializeField]
     private float m_MaxTime;
 
-    [SerializeField]
     private bool m_Extending;
 
     private Rigidbody2D m_ParentRigidbody2D;
@@ -15,12 +14,6 @@ public class FootBehaviour : MonoBehaviour
     private Vector3 m_OriginalPosition;
 
     private float m_CurrentTime;
-
-    public bool extending
-    {
-        get { return m_Extending; }
-        set { m_Extending = value; }
-    }
 
     // Use this for initialization
     void Start()
