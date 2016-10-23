@@ -97,7 +97,7 @@ public static class LimbObjectFactory
             }
         }
 
-        var collider2D = newLimbObject.AddComponent<PolygonCollider2D>();
+        var collider2D = newLimbObject.AddComponent<BoxCollider2D>();
         collider2D.isTrigger = true;
 
         var newLimbBehaviour = newLimbObject.AddComponent<LimbBehaviour>();
