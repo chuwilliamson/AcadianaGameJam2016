@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Runtime.Remoting.Messaging;
 
 using UnityEngine;
 
@@ -11,7 +10,7 @@ namespace Items
         private Limb m_Limb;
 
         [SerializeField]
-        private float m_AliveTime;
+        private float m_MaxTimeAlive;
 
         private bool m_CanPickUp;
 
@@ -20,10 +19,10 @@ namespace Items
             get { return m_Limb; }
         }
 
-        public float aliveTime
+        public float maxTimeAlive
         {
-            get { return m_AliveTime; }
-            set { m_AliveTime = value; }
+            get { return m_MaxTimeAlive; }
+            set { m_MaxTimeAlive = value; }
         }
 
         public bool canPickUp
@@ -36,7 +35,7 @@ namespace Items
             m_Limb = newLimb;
             m_Limb.parent = gameObject;
 
-            m_AliveTime = newAliveTime;
+            m_MaxTimeAlive = newAliveTime;
 
             StartCoroutine(Disappear());
 
@@ -56,7 +55,7 @@ namespace Items
             m_CanPickUp = true;
 
             var time = 0f;
-            while (time < m_AliveTime)
+            while (time < m_MaxTimeAlive)
             {
                 time += Time.deltaTime;
 
@@ -65,10 +64,11 @@ namespace Items
                 {
                     spriteRenderer.color =
                         new Color(
-                            spriteRenderer.color.r,
-                            spriteRenderer.color.g,
-                            spriteRenderer.color.b,
-                            1f - time / m_AliveTime);
+                            Random.value,
+                            Random.value,
+                            Random.value,
+                            (time < m_MaxTimeAlive / 2f) ?
+                            spriteRenderer.color.a : 1f - (time / 2f) / (m_MaxTimeAlive / 2f));
                 }
                 transform.localScale =
                     new Vector3(
