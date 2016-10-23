@@ -38,4 +38,15 @@ public class GameStateManager : MonoBehaviour {
     {
         get { return m_currentState; }
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+            ToCredits();
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
