@@ -1,29 +1,47 @@
 #Acadiana Game Jam 2016 submission
 
-#Team Name
+##Team Name
+
 Null Reference
+
 #Team Members
-=Art=
+
+#Art
+
 Donald Gremillion
-=Programming=
+
+##Programming
+
 Benjamin Odom
+
 Matthew Williamson
-=Audio=
+
+##Audio
+
 Jeremy Barzas
 
 #Operating Instructions:
+
 Movement: W A S D to move   
+
 Movement: Right click mouse to aim
+
 Movement: Left click to shoot
 
 GameState: F1 to restart
+
 GameState: Q to quit
 
 #Overview
+
 Title: Project Spark
+
 Summary: Top down Wave based Survival game.
+
 In a world where limbs are limbs. You must use limbs to get more limbs. as a samurai
+
 Win Condition: Press 
+
 Loss Condition: None..
 
 
