@@ -103,6 +103,7 @@ public class EnemyController : MonoBehaviour
     private GameObject BuildLimb(Object template, Limb limb, bool flipX = false, bool flipY = false)
     {
         var obj = Instantiate(template, transform) as GameObject;
+        obj.transform.localPosition = Vector3.zero;
         if (!obj)
             return null;
 
