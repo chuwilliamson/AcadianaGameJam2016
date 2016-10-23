@@ -5,7 +5,7 @@ namespace Factories
     [CreateAssetMenu(fileName = "NewLimbFactorySettings", menuName = "Settings/Limb Factory Settings")]
     public class LimbObjectFactorySettings : ScriptableObject
     {
-        [Space]
+        [Header("Limb Object")]
         public GameObject limbPrefab;
 
         [Space]
@@ -22,5 +22,12 @@ namespace Factories
         [Space]
         public float rotationRandomMin;
         public float rotationRandomMax;
+
+        [Header("Limb Weapon")]
+        public GameObject limbWeaponPrefab;
+
+        [Space]
+        public Sprite deafultArmWeaponSprite;
+        public Sprite deafultLegWeaponSprite;
     }
 }

@@ -83,37 +83,41 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.collider.gameObject.GetComponent<ZombiePlayerController>())
         {
-            //to test hitting different body parts
-            var poppedArm = m_Inventory.PopArm();
-            if (poppedArm != null)
-            {
-                if (!LimbObjectFactory.Create(poppedArm, transform.position))
-                    return;
-
-                m_AudioSource.clip = AudioClips[0];
-                m_AudioSource.Play();
-
-                return;
-            }
-
-            var poppedLeg = m_Inventory.PopLeg();
-            if (poppedLeg != null)
-            {
-                if (!LimbObjectFactory.Create(poppedLeg, transform.position))
-                    return;
-
-                m_AudioSource.clip = AudioClips[1];
-                m_AudioSource.Play();
-
-                return;
-            }
-
-            m_AudioSource.clip = AudioClips[2];
-
-            m_HitCounter -= 1;
-
-            m_AudioSource.Play();
+            TakeDamage();
         }
+    }
+
+    public bool TakeDamage()
+    {
+        var poppedArm = m_Inventory.PopArm();
+        if (poppedArm != null)
+        {
+            LimbObjectFactory.CreateObject(poppedArm, transform.position);
+
+            m_AudioSource.clip = AudioClips[0];
+            m_AudioSource.Play();
+
+            return true;
+        }
+
+        var poppedLeg = m_Inventory.PopLeg();
+        if (poppedLeg != null)
+        {
+            LimbObjectFactory.CreateObject(poppedLeg, transform.position);
+
+            m_AudioSource.clip = AudioClips[1];
+            m_AudioSource.Play();
+
+            return true;
+        }
+
+        m_AudioSource.clip = AudioClips[2];
+
+        m_HitCounter -= 1;
+
+        m_AudioSource.Play();
+
+        return false;
     }
     private AudioSource m_AudioSource;
     public AudioClip[] AudioClips;

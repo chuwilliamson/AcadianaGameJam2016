@@ -37,7 +37,7 @@ public static class LimbObjectFactory
         Rotate = 1 << 1,
     }
 
-    public static bool Create<T>(
+    public static GameObject CreateObject<T>(
         T limb,
         Vector3 position,
         PhysicsType physicsType = PhysicsType.Translate | PhysicsType.Rotate) where T : Limb
@@ -46,7 +46,7 @@ public static class LimbObjectFactory
             Object.Instantiate(settings.limbPrefab, position, Quaternion.identity) as GameObject;
 
         if (!newLimbObject)
-            return false;
+            return null;
 
         EnemyLimbBehaviour matchingEnemyLimb = null;
         foreach (var enemyLimb in Object.FindObjectsOfType<EnemyLimbBehaviour>())
@@ -103,7 +103,7 @@ public static class LimbObjectFactory
         var newLimbBehaviour = newLimbObject.AddComponent<LimbBehaviour>();
         newLimbBehaviour.Init(limb, settings.aliveTime);
 
-        return true;
+        return newLimbObject;
     }
 
     private static float GetTranslationValue()
@@ -126,5 +126,34 @@ public static class LimbObjectFactory
         return
             Random.Range(settings.rotationRandomMin, settings.rotationRandomMax)
             * negativeCoefficient;
+    }
+
+    public static GameObject CreateWeapon<T>(
+        GameObject owner,
+        T limb) where T : Limb
+    {
+        var newLimbWeapon =
+            Object.Instantiate(
+                settings.limbWeaponPrefab, owner.transform.position, Quaternion.identity) as GameObject;
+
+        var spriteRenderer = newLimbWeapon.GetComponent<SpriteRenderer>();
+        if (spriteRenderer)
+        {
+            if (limb is Arm)
+                spriteRenderer.sprite = settings.deafultArmWeaponSprite;
+            if (limb is Leg)
+                spriteRenderer.sprite = settings.deafultLegWeaponSprite;
+        }
+
+        var collider2D = newLimbWeapon.AddComponent<BoxCollider2D>();
+        collider2D.isTrigger = true;
+
+        var weaponBehaviour = newLimbWeapon.GetComponent<LimbWeaponBehaviour>();
+        if (!weaponBehaviour)
+            return null;
+
+        weaponBehaviour.Init(owner, limb);
+
+        return newLimbWeapon;
     }
 }

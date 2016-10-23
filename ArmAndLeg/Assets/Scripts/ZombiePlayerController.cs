@@ -50,9 +50,9 @@ public class ZombiePlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-
+            StartCoroutine(ShootLimb());
         }
 
         float h = Input.GetAxis("Horizontal");
@@ -78,9 +78,9 @@ public class ZombiePlayerController : MonoBehaviour
                     angle + 90);
     }
 
-    private void OnTriggerStay2D(Collider2D collider)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        var limbBehaviour = collider.GetComponent<LimbBehaviour>();
+        var limbBehaviour = other.GetComponent<LimbBehaviour>();
         if (limbBehaviour && limbBehaviour.canPickUp)
         {
             m_Inventory.AddLimb(limbBehaviour.limb);
@@ -88,8 +88,11 @@ public class ZombiePlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator ShootLimb()
+    private IEnumerator ShootLimb()
     {
+        var poppedLimb = m_Inventory.PopLimb();
+        LimbObjectFactory.CreateWeapon(gameObject, poppedLimb);
+
         yield return false;
     }
 }
