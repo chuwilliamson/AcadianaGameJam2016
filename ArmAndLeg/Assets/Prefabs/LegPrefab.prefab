@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000010702211374}
   - 212: {fileID: 212000013986602036}
   - 114: {fileID: 114000010657994276}
+  - 114: {fileID: 114000014199177356}
   m_Layer: 0
   m_Name: LegPrefab
   m_TagString: Untagged
@@ -52,6 +53,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92fc5daefffd9154ab38ae11768ca377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000014199177356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011804989988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e9af55fd858dae4f967581271cb5c3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MaxOffset: 0.25
+  m_MaxTime: 0.15
+  m_Extending: 0
 --- !u!212 &212000013986602036
 SpriteRenderer:
   m_ObjectHideFlags: 1
