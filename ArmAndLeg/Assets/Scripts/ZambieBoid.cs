@@ -26,7 +26,7 @@ public class ZambieBoid : MonoBehaviour
     void LateUpdate()
     {
         velocity += seek;
-        transform.position += velocity * Time.deltaTime / GetComponent<Rigidbody2D>().mass;
+        GetComponent<Rigidbody2D>().velocity = velocity;
         transform.up = velocity * -1f;
     }
 }
