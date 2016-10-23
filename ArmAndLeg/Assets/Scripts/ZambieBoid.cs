@@ -10,7 +10,7 @@ public class ZambieBoid : MonoBehaviour
     
     void Start()
     {
-        SetMovement(new Seek());  
+        SetMovement(new Linear());  
     }
     void Update()
     {
@@ -33,7 +33,9 @@ public class Linear : IMovement
 {
     public void Move(GameObject go, GameObject target)
     {
-        go.transform.position += new Vector3(1, 0, 0);
+        Vector3 dir = target.transform.position - go.transform.position;
+        Vector3 oldPos = go.transform.position;
+        go.transform.position = oldPos + dir.normalized * Time.deltaTime;
     }
 }
 public class Seek : IMovement
@@ -44,13 +46,16 @@ public class Seek : IMovement
     public void Move(GameObject go, GameObject target)
     { 
         float seekFactor = 5f;
-        Vector3 Velocity = go.transform.position.normalized;
+
+        Vector3 v = go.transform.position.normalized;
         
-        Vector3 DesiredVelocity = Vector3.Normalize(target.transform.position - go.transform.position);
+        Vector3 dir = Vector3.Normalize(target.transform.position - go.transform.position);
 
-        Vector3 SeekForce = seekFactor * (DesiredVelocity - Velocity).normalized;
+        Vector3 oldPos = go.transform.position;
+        
+        Vector3 SeekForce = seekFactor * (dir  - v).normalized;
 
-        go.transform.position += SeekForce * Time.deltaTime;
+        go.transform.position = oldPos + dir.normalized * Time.deltaTime;
         
     }
 }
