@@ -18,6 +18,9 @@ namespace Items
         [SerializeField]
         private float m_MeleeDamage = 1f;
 
+        [SerializeField]
+        private int m_Durability;
+
         public MyBoolEvent inInventoryEvent = new MyBoolEvent();
 
         public GameObject parent
@@ -35,6 +38,12 @@ namespace Items
 
                 inInventoryEvent.Invoke(value);
             }
+        }
+
+        public int durability
+        {
+            get { return m_Durability; }
+            set { m_Durability = value; }
         }
 
         public abstract bool Swing();
