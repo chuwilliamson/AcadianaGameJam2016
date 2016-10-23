@@ -67,41 +67,43 @@ public class EnemyController : MonoBehaviour
         var left = rigidbody2D.velocity.x < 0;
         var right = rigidbody2D.velocity.x > 0;
 
-        animator.SetBool("Forward", forward);
-        animator.SetBool("Backward", backward);
+        //animator.SetBool("Forward", forward);
+        //animator.SetBool("Backward", backward);
 
-        animator.SetBool("Left", left);
-        animator.SetBool("Right", right);
+        //animator.SetBool("Left", left);
+        //animator.SetBool("Right", right);
 
-        animator.SetFloat("Horizontal", rigidbody2D.velocity.x);
-        animator.SetFloat("Vertical", rigidbody2D.velocity.y);
+        //animator.SetFloat("Horizontal", rigidbody2D.velocity.x);
+        //animator.SetFloat("Vertical", rigidbody2D.velocity.y);
 
-        foreach (var limb in m_Inventory.limbs)
-        {
-            var limbAnimator = limb.parent.GetComponent<Animator>();
-            if (!limbAnimator)
-                continue;
+        //foreach (var limb in m_Inventory.limbs)
+        //{
+        //    var limbAnimator = limb.parent.GetComponent<Animator>();
+        //    if (!limbAnimator)
+        //        continue;
 
-            limbAnimator.SetBool("Forward", forward);
-            limbAnimator.SetBool("Backward", backward);
+        //    limbAnimator.SetBool("Forward", forward);
+        //    limbAnimator.SetBool("Backward", backward);
 
-            limbAnimator.SetBool("Left", left);
-            limbAnimator.SetBool("Right", right);
+        //    limbAnimator.SetBool("Left", left);
+        //    limbAnimator.SetBool("Right", right);
 
-            limbAnimator.SetFloat("Horizontal", rigidbody2D.velocity.x);
-            limbAnimator.SetFloat("Vertical", rigidbody2D.velocity.y);
-        }
+        //    limbAnimator.SetFloat("Horizontal", rigidbody2D.velocity.x);
+        //    limbAnimator.SetFloat("Vertical", rigidbody2D.velocity.y);
+        //}
     }
 
     void DoDead()
     {
         GetComponent<SpriteRenderer>().sprite = DeadSprite;
+        GetComponent<ZambieBoid>().enabled = false;
     }
 
 
     private GameObject BuildLimb(Object template, Limb limb, bool flipX = false, bool flipY = false)
     {
         var obj = Instantiate(template, transform) as GameObject;
+        obj.transform.localPosition = Vector3.zero;
         if (!obj)
             return null;
 
@@ -125,25 +127,28 @@ public class EnemyController : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        //to test hitting different body parts
-        if (m_Inventory.PopArm(transform.position))
+        if (collision.collider.gameObject.GetComponent<ZombiePlayerController>())
         {
-            m_AudioSource.clip = AudioClips[0];
-            m_AudioSource.Play();
+            //to test hitting different body parts
+            if (m_Inventory.PopArm(transform.position))
+            {
+                m_AudioSource.clip = AudioClips[0];
+                m_AudioSource.Play();
 
-        }
-        else if (m_Inventory.PopLeg(transform.position))
-        {
-            m_AudioSource.clip = AudioClips[1];
-            m_AudioSource.Play();
-        }
-        else
-        {
-            m_AudioSource.clip = AudioClips[2];
+            }
+            else if (m_Inventory.PopLeg(transform.position))
+            {
+                m_AudioSource.clip = AudioClips[1];
+                m_AudioSource.Play();
+            }
+            else
+            {
+                m_AudioSource.clip = AudioClips[2];
 
-            m_HitCounter -= 1;
+                m_HitCounter -= 1;
 
-            m_AudioSource.Play();
+                m_AudioSource.Play();
+            }
         }
     }
     private AudioSource m_AudioSource;
