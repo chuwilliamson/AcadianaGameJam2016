@@ -42,7 +42,8 @@ public class ZombiePlayerController : MonoBehaviour
         float vel = (pos - (Vector2)transform.position).magnitude;
 
         m_anim.SetFloat("Horizontal", h);
-        m_anim.SetFloat("Vertical", h);
+        m_anim.SetFloat("Vertical", v);
+        
 
         // UNCOMMENT FOR ANGULAR ROTATION
 
