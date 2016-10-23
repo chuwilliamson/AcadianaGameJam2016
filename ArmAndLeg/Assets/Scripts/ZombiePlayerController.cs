@@ -91,7 +91,8 @@ public class ZombiePlayerController : MonoBehaviour
     private IEnumerator ShootLimb()
     {
         var poppedLimb = m_Inventory.PopLimb();
-        LimbObjectFactory.CreateWeapon(gameObject, poppedLimb);
+        if (poppedLimb != null)
+            LimbObjectFactory.CreateWeapon(gameObject, poppedLimb);
 
         yield return false;
     }
