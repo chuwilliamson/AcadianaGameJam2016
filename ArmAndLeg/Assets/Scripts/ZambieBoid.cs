@@ -7,6 +7,7 @@ public class ZambieBoid : MonoBehaviour
     private IMovement movementType;
     public GameObject target;
     public float mass;
+    
     void Start()
     {
         SetMovement(new Seek());  
@@ -41,15 +42,15 @@ public class Seek : IMovement
     private float mass = 5f;
     
     public void Move(GameObject go, GameObject target)
-    {
-        Vector3 current = go.transform.position;
-        float seekFactor = 5f;        
-
+    { 
+        float seekFactor = 5f;
+        Vector3 Velocity = go.transform.position.normalized;
+        
         Vector3 DesiredVelocity = Vector3.Normalize(target.transform.position - go.transform.position);
 
-        Vector3 SeekForce = seekFactor * (DesiredVelocity - current).normalized;
+        Vector3 SeekForce = seekFactor * (DesiredVelocity - Velocity).normalized;
 
-        go.transform.position = current +  SeekForce * Time.deltaTime;
+        go.transform.position += SeekForce * Time.deltaTime;
         
     }
 }
