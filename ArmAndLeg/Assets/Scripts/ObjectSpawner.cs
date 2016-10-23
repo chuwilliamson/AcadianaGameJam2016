@@ -8,15 +8,15 @@ public class ObjectSpawner : MonoBehaviour
         for (int i = 0; i < 25; i++)
             Spawn(prefab);
     }
-    [SerializeField]
-    public Rect boundary;
+    
+    
     void Spawn(GameObject go)
     {
-        float randx = Random.Range(boundary.xMin, boundary.xMax);
-        float randy = Random.Range(boundary.yMin, boundary.yMax);
+        float randx = Random.Range(-25f, 25f);
+        float randy = Random.Range(-25f, 25f);
         Vector3 randPos = new Vector3(randx, randy, 0);
         GameObject thing = Instantiate(go, randPos, Quaternion.identity, transform) as GameObject;
-        thing.name = "yeaaaaa";
+        thing.name = "Zambie";
 
     }
 
