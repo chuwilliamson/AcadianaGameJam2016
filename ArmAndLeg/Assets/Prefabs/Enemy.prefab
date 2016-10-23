@@ -25,8 +25,7 @@ GameObject:
   - 50: {fileID: 50000011826077854}
   - 82: {fileID: 82000010143296610}
   - 95: {fileID: 95000012556852112}
-  - 114: {fileID: 114000010978309728}
-  - 114: {fileID: 114000013835285548}
+  - 114: {fileID: 114000012703499572}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -54,9 +53,9 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013928645508}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_UseAutoMass: 1
+  m_Mass: 2.258742
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_IsKinematic: 0
@@ -169,7 +168,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114000010978309728
+--- !u!114 &114000012703499572
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -180,8 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e396a9da0d365fa40b6dfafa9a87b8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  mass: 5
+  target: {fileID: 1000013576581708, guid: 9ddd073625275ba48b67e368249e1e58, type: 2}
 --- !u!114 &114000012820910684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -204,25 +202,19 @@ MonoBehaviour:
       m_TypeName: MyIntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   armPrefab: {fileID: 1000012771716612, guid: 241d3c467d1a1cb4f83e9f2b8546aa68, type: 2}
   legPrefab: {fileID: 1000011804989988, guid: bc8a4fb61adcbb64cb1bbde164e0c21a, type: 2}
+  m_armPool:
+  - {fileID: 21300000, guid: 357fb641f87356b48b572d8fd95c6725, type: 3}
+  - {fileID: 21300000, guid: 7e0db1665cee1d244a5e36f1ac3c97bd, type: 3}
+  - {fileID: 21300000, guid: 143c756d781e16046af285e9d3cad469, type: 3}
+  m_legPool:
+  - {fileID: 21300000, guid: da48aafb6623201409d3800052ef1854, type: 3}
+  m_torsoPool: []
   AudioClips:
   - {fileID: 8300000, guid: 8a3a3b50b7c0b1e419f7f39c9e393282, type: 3}
   - {fileID: 8300000, guid: e3bc622d026298240aacefd73997299d, type: 3}
   - {fileID: 8300000, guid: 3d7b59f47ef8208499ef3a9910c24179, type: 3}
   m_HitCounter: 1
   DeadSprite: {fileID: 21300000, guid: 9a9871d79d525ab499dd167fd35c46ad, type: 3}
---- !u!114 &114000013835285548
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013928645508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e396a9da0d365fa40b6dfafa9a87b8c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  mass: 5
 --- !u!212 &212000010683890364
 SpriteRenderer:
   m_ObjectHideFlags: 1

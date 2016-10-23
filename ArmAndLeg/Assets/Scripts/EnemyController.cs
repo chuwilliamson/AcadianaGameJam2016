@@ -18,11 +18,19 @@ public class EnemyController : MonoBehaviour
         m_AudioSource = GetComponent<AudioSource>();
 
     }
+    public List<Sprite> m_armPool;
+    public List<Sprite> m_legPool;
+    public List<Sprite> m_torsoPool;
     void Start()
     {
+        
         var armLeftobj = BuildLimb(armPrefab, new Arm(), true);
+        
+        armLeftobj.GetComponent<SpriteRenderer>().sprite = m_armPool[Random.Range(0, m_armPool.Count - 1)];
         var armRightobj = BuildLimb(armPrefab, new Arm());
+        armRightobj.GetComponent<SpriteRenderer>().sprite = m_armPool[Random.Range(0, m_armPool.Count - 1)];
         var legRightobj = BuildLimb(legPrefab, new Leg(), true);
+
         var legLeftobj = BuildLimb(legPrefab, new Leg());
         StartCoroutine("CheckDead");
     }
@@ -67,30 +75,6 @@ public class EnemyController : MonoBehaviour
         var left = rigidbody2D.velocity.x < 0;
         var right = rigidbody2D.velocity.x > 0;
 
-        //animator.SetBool("Forward", forward);
-        //animator.SetBool("Backward", backward);
-
-        //animator.SetBool("Left", left);
-        //animator.SetBool("Right", right);
-
-        //animator.SetFloat("Horizontal", rigidbody2D.velocity.x);
-        //animator.SetFloat("Vertical", rigidbody2D.velocity.y);
-
-        //foreach (var limb in m_Inventory.limbs)
-        //{
-        //    var limbAnimator = limb.parent.GetComponent<Animator>();
-        //    if (!limbAnimator)
-        //        continue;
-
-        //    limbAnimator.SetBool("Forward", forward);
-        //    limbAnimator.SetBool("Backward", backward);
-
-        //    limbAnimator.SetBool("Left", left);
-        //    limbAnimator.SetBool("Right", right);
-
-        //    limbAnimator.SetFloat("Horizontal", rigidbody2D.velocity.x);
-        //    limbAnimator.SetFloat("Vertical", rigidbody2D.velocity.y);
-        //}
     }
 
     void DoDead()
@@ -98,8 +82,7 @@ public class EnemyController : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = DeadSprite;
         GetComponent<ZambieBoid>().enabled = false;
     }
-
-
+        
     private GameObject BuildLimb(Object template, Limb limb, bool flipX = false, bool flipY = false)
     {
         var obj = Instantiate(template, transform) as GameObject;

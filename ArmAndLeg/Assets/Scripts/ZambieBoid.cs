@@ -14,6 +14,7 @@ public class ZambieBoid : MonoBehaviour
     void Awake()
     {
         velocity = transform.position.normalized;
+        target = FindObjectOfType<ZombiePlayerController>().gameObject;
     }
     void Update()
     {        
@@ -25,7 +26,8 @@ public class ZambieBoid : MonoBehaviour
     void LateUpdate()
     {
         velocity += seek;
-        transform.position += velocity * Time.deltaTime;
+        transform.position += velocity * Time.deltaTime / GetComponent<Rigidbody2D>().mass;
+        transform.up = velocity * -1f;
     }
 }
  

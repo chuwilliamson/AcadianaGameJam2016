@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using Items;
 public class ObjectSpawner : MonoBehaviour
 {
     void Start()
     {
         for (int i = 0; i < 25; i++)
-            Spawn(prefab);
+            Spawn(prefab); 
     }
     
     
@@ -16,10 +16,10 @@ public class ObjectSpawner : MonoBehaviour
         float randy = Random.Range(-25f, 25f);
         Vector3 randPos = new Vector3(randx, randy, 0);
         GameObject thing = Instantiate(go, randPos, Quaternion.identity, transform) as GameObject;
-        thing.name = "Zambie";
-
+        thing.name = "Zambie"; 
     }
 
+ 
     // Update is called once per frame
-    public GameObject prefab;
+    public GameObject prefab; 
 }

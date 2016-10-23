@@ -87,7 +87,6 @@ GameObject:
   - 114: {fileID: 114000010160235826}
   - 61: {fileID: 61000013093539748}
   - 212: {fileID: 212000011690652614}
-  - 95: {fileID: 95000010689548300}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -192,26 +191,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0.018675327, y: -0.06847286}
+  m_Offset: {x: -0.004410267, y: -0.29462743}
   serializedVersion: 2
-  m_Size: {x: 0.8996072, y: 1.0987978}
---- !u!95 &95000010689548300
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013576581708}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 26172fd2964fbad4db1e78f00fb72b70, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_Size: {x: 2.5742188, y: 1.1671252}
 --- !u!114 &114000010160235826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -224,6 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 0}
+  m_Rigidbody2D: {fileID: 0}
   m_Inventory:
     armCountEvent:
       m_PersistentCalls:
