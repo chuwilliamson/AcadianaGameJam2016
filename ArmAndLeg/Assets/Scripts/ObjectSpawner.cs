@@ -1,15 +1,50 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Items;
+using UnityEngine.Events;
 public class ObjectSpawner : MonoBehaviour
 {
-    void Start()
+    public GameStateManager gm;
+    void Awake()
     {
-        for (int i = 0; i < 25; i++)
-            Spawn(prefab); 
+        if (onCombatUpdate == null)
+            onCombatUpdate = new UnityEvent();
+        gm = FindObjectOfType<GameStateManager>();
+        if (!gm)
+        {
+            Debug.LogWarning("no gm found making default 25 enemies");
+            numEnemies = 25;
+            
+        }
+        else
+        {
+            numEnemies = gm.combatRound.enemyCount;
+        }
+
+        
+        for (int i = 0; i < numEnemies; i++)
+            Spawn(prefab);
     }
-    
-    
+    void Start()
+    {        
+        EnemyController.onEnemyDead.AddListener(OnEnemyDead);
+    }
+    public int numEnemies;
+    public UnityEvent onCombatUpdate;
+    void OnEnemyDead()
+    {
+        numEnemies--;
+        onCombatUpdate.Invoke();
+    }
+    void Update()
+    {
+        if (numEnemies <= 0)
+        {
+            if(gm)
+                gm.ToCombat();          
+                
+        } 
+    }
     void Spawn(GameObject go)
     {
         float randx = Random.Range(-25f, 25f);
@@ -23,3 +58,4 @@ public class ObjectSpawner : MonoBehaviour
     // Update is called once per frame
     public GameObject prefab; 
 }
+

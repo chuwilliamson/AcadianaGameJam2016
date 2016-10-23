@@ -19,9 +19,18 @@ public class GameStateManager : MonoBehaviour {
         m_currentState = GameState.Start;
         SceneManager.LoadScene(0);
     }
-
+  
     public void ToCombat()
     {
+        if (combatRound == null)
+        {
+            combatRound = new CombatRound(2);
+        }
+        else
+        { 
+            int roundNumber = combatRound.roundNumber; 
+            combatRound = new CombatRound(roundNumber + 1);
+        }
         m_currentState = GameState.Combat;
         SceneManager.LoadScene(1);
     }
@@ -43,10 +52,29 @@ public class GameStateManager : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Q))
             ToCredits();
+        if (Input.GetKeyDown(KeyCode.F1))
+            ToCombat();
     }
 
     public void Quit()
     {
         Application.Quit();
     }
+
+    public CombatRound combatRound;
+     
+
+}
+
+public class CombatRound
+{
+    public CombatRound(int round)
+    {
+        roundNumber = round;
+        enemyCount = roundNumber * roundNumber;
+    }
+
+    public int roundNumber;
+
+    public int enemyCount;
 }
