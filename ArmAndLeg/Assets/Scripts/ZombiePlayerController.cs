@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 
+using Factories;
+
 using Items;
 
 using UnityEngine;
@@ -8,6 +10,8 @@ public class ZombiePlayerController : MonoBehaviour
 {
     [SerializeField]
     private Animator m_Animator;
+    [SerializeField]
+    private Rigidbody2D m_Rigidbody2D;
 
     [SerializeField]
     private Inventory m_Inventory;
@@ -24,6 +28,7 @@ public class ZombiePlayerController : MonoBehaviour
     void Awake()
     {
         m_Animator = GetComponent<Animator>();
+        m_Rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     void Start()
@@ -43,16 +48,21 @@ public class ZombiePlayerController : MonoBehaviour
     public Vector3 mousePosition;
     public float angle;
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetMouseButton(0))
-            ;
+        {
+
+        }
 
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        transform.position += h * m_Speed * -transform.right * Time.deltaTime;
-        transform.position += v * m_Speed * -transform.up * Time.deltaTime;
+        var totalVelocity = Vector3.zero;
+        totalVelocity += h * m_Speed * -transform.right;
+        totalVelocity += v * m_Speed * -transform.up;
+
+        m_Rigidbody2D.velocity = totalVelocity;
 
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -65,7 +75,7 @@ public class ZombiePlayerController : MonoBehaviour
                 new Vector3(
                     transform.eulerAngles.x,
                     transform.eulerAngles.y,
-                    angle + 90f);
+                    angle + 90);
     }
 
     private void OnTriggerStay2D(Collider2D collider)
