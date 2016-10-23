@@ -45,38 +45,7 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
-    {
-        var player = FindObjectOfType<ZombiePlayerController>();
-        if (!player)
-            return;
-
-        var rigidbody2D = GetComponent<Rigidbody2D>();
-        if (!rigidbody2D)
-            return;
-
-        //if (player.transform.position.x > transform.position.x)
-        //    rigidbody2D.velocity = new Vector2(1f, 0f);
-        //else if(player.transform.position.y > transform.position.y)
-        //    rigidbody2D.velocity = new Vector2(0f, 1f);
-
-        //else if (player.transform.position.x < transform.position.x)
-        //    rigidbody2D.velocity = new Vector2(-1f, 0f);
-        //else if (player.transform.position.y < transform.position.y)
-        //    rigidbody2D.velocity = new Vector2(0f, -1f);
-
-        var animator = GetComponent<Animator>();
-        if (!animator)
-            return;
-
-        var forward = rigidbody2D.velocity.y < 0;
-        var backward = rigidbody2D.velocity.y > 0;
-
-        var left = rigidbody2D.velocity.x < 0;
-        var right = rigidbody2D.velocity.x > 0;
-
-    }
-
+ 
     void DoDead()
     {
         GetComponent<SpriteRenderer>().sprite = DeadSprite;
