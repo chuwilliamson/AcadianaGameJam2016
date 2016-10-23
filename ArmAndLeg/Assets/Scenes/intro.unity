@@ -122,8 +122,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -107.9, y: 28.2}
-  m_SizeDelta: {x: 223.2, y: 138.1}
+  m_AnchoredPosition: {x: -78.9, y: 27.3}
+  m_SizeDelta: {x: 203.9, y: 120.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &85844561
 MonoBehaviour:
@@ -169,6 +169,7 @@ GameObject:
   - 222: {fileID: 315329066}
   - 114: {fileID: 315329065}
   - 114: {fileID: 315329064}
+  - 114: {fileID: 315329067}
   m_Layer: 5
   m_Name: Legs
   m_TagString: Untagged
@@ -192,7 +193,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -46}
+  m_AnchoredPosition: {x: -19.9, y: -47.5}
   m_SizeDelta: {x: 138.7, y: 54}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &315329064
@@ -246,6 +247,38 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 315329062}
+--- !u!114 &315329067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 315329062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bdc7f9b85ee19b489241001a88a3928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0.5
+      value: 2
+      inSlope: 1.4731288
+      outSlope: 1.4731288
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 1
+    m_RotationOrder: 0
 --- !u!1 &731317620
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +425,7 @@ GameObject:
   - 222: {fileID: 995968304}
   - 114: {fileID: 995968303}
   - 114: {fileID: 995968302}
+  - 114: {fileID: 995968305}
   m_Layer: 5
   m_Name: Arms
   m_TagString: Untagged
@@ -415,7 +449,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -19.900024, y: -1.5}
   m_SizeDelta: {x: 138.7, y: 46}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &995968302
@@ -469,6 +503,38 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 995968300}
+--- !u!114 &995968305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 995968300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bdc7f9b85ee19b489241001a88a3928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0.5
+      value: 2
+      inSlope: 1.4731288
+      outSlope: 1.4731288
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 1
+    m_RotationOrder: 0
 --- !u!1 &1012080419
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,8 +781,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -74.3, y: 17}
-  m_SizeDelta: {x: 172.6, y: 159.2}
+  m_AnchoredPosition: {x: -30.4, y: 20.5}
+  m_SizeDelta: {x: 131.3, y: 125.8}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1134781835
 MonoBehaviour:

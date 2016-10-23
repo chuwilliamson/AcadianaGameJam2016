@@ -38,5 +38,6 @@ public class UIInventory : MonoBehaviour
     private void UpdateText(int amount)
     {
         GetComponent<Text>().text = ogString + " " + amount;
+        GetComponent<UITween>().DoIt();
     }
 }
