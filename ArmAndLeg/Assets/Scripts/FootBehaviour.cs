@@ -19,7 +19,7 @@ public class FootBehaviour : MonoBehaviour
     public bool extending
     {
         get { return m_Extending; }
-        set { m_Extending = false; }
+        set { m_Extending = value; }
     }
 
     // Use this for initialization
@@ -27,10 +27,19 @@ public class FootBehaviour : MonoBehaviour
     {
         m_ParentRigidbody2D = transform.parent.GetComponent<Rigidbody2D>();
         m_OriginalPosition = transform.localPosition;
+
+        foreach (var footBehaviour in transform.parent.GetComponentsInChildren<FootBehaviour>())
+        {
+            if (footBehaviour == this)
+                continue;
+
+            if (!footBehaviour.m_Extending)
+                m_Extending = true;
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (!m_ParentRigidbody2D)
             return;
@@ -49,8 +58,6 @@ public class FootBehaviour : MonoBehaviour
                     transform.eulerAngles.x,
                     transform.eulerAngles.y,
                     angle);
-
-
 
         angle = (transform.localEulerAngles.z - 90f) * Mathf.Deg2Rad;
         if (!m_Extending)
@@ -81,9 +88,9 @@ public class FootBehaviour : MonoBehaviour
         }
 
         if (Mathf.Abs(m_CurrentTime) > m_MaxTime)
+        {
+            m_CurrentTime = m_Extending ? -m_MaxTime : m_MaxTime;
             m_Extending = !m_Extending;
-
-        //if (Vector3.Distance(transform.localPosition, m_OriginalPosition) > m_MaxOffset)
-        //    m_Extending = !m_Extending;
+        }
     }
 }
