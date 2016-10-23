@@ -195,7 +195,8 @@ MonoBehaviour:
   AudioClips:
   - {fileID: 8300000, guid: 8a3a3b50b7c0b1e419f7f39c9e393282, type: 3}
   - {fileID: 8300000, guid: e3bc622d026298240aacefd73997299d, type: 3}
-  - {fileID: 8300000, guid: 3d7b59f47ef8208499ef3a9910c24179, type: 3}
+  - {fileID: 8300000, guid: da5f1da3de7507c419dda5e5e93971cf, type: 3}
+  - {fileID: 8300000, guid: 4f85740d2865edc4cb1e05cd0cceb88a, type: 3}
   m_HitCounter: 1
   DeadSprite: {fileID: 21300000, guid: 559504ee552ffdd4aae0a8a12358b214, type: 3}
 --- !u!212 &212000010683890364
