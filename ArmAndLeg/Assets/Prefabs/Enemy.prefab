@@ -197,7 +197,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e3bc622d026298240aacefd73997299d, type: 3}
   - {fileID: 8300000, guid: 3d7b59f47ef8208499ef3a9910c24179, type: 3}
   m_HitCounter: 1
-  DeadSprite: {fileID: 21300000, guid: 9a9871d79d525ab499dd167fd35c46ad, type: 3}
+  DeadSprite: {fileID: 21300000, guid: 559504ee552ffdd4aae0a8a12358b214, type: 3}
 --- !u!212 &212000010683890364
 SpriteRenderer:
   m_ObjectHideFlags: 1
