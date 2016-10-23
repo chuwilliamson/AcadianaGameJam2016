@@ -68,8 +68,14 @@ namespace Items
                             spriteRenderer.color.r,
                             spriteRenderer.color.g,
                             spriteRenderer.color.b,
-                            spriteRenderer.color.a - 1f / m_AliveTime * Time.deltaTime);
+                            1f - time / m_AliveTime);
                 }
+                transform.localScale =
+                    new Vector3(
+                        1f + Mathf.Sin(time * 6f) / 3f,
+                        1f + Mathf.Sin(time * 6f) / 3f,
+                        1f);
+
                 yield return false;
             }
 

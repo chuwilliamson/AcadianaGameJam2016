@@ -14,8 +14,8 @@ MonoBehaviour:
   limbPrefab: {fileID: 1000013572252958, guid: 3f821fcc127ec2049a28a9c0e291df67, type: 2}
   defaultArmSprite: {fileID: 21300000, guid: 3112124edbf91814cad05089e556bd76, type: 3}
   defaultLegSprite: {fileID: 21300000, guid: bb831492d360c4b4ba9c04493223bdfb, type: 3}
-  aliveTime: 3
-  translationRandomMin: 500
+  aliveTime: 5
+  translationRandomMin: 600
   translationRandomMax: 800
   rotationRandomMin: 250
   rotationRandomMax: 400
