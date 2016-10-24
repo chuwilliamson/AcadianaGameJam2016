@@ -25,6 +25,7 @@ public class EnemyController : MonoBehaviour
     public List<Sprite> m_armPool;
     public List<Sprite> m_legPool;
     public List<Sprite> m_torsoPool;
+
     void Start()
     {
 
